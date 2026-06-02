@@ -1,0 +1,8 @@
+# Apple Wallet Certificates (Do not commit actual certificates or keys)
+certificates/WWDR.pem
+certificates/signerCert.pem
+certificates/signerKey.pem
+
+# System files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,6 @@
+# Keep this directory to store your Apple Wallet certificates.
+# 
+# Place your real WWDR.pem, signerCert.pem, and signerKey.pem here.
+# These files are ignored by git to keep them private.
+#
+# For setup reference, copy the *.pem.example files to *.pem and populate them.
