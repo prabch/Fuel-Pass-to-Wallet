@@ -402,5 +402,22 @@ async function loadConfig() {
   }
 }
 
+/**
+ * Enables direct link to Apple Wallet app on iOS devices using the shoebox:// scheme.
+ */
+function setupWalletLink() {
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (isIOS) {
+    const container = document.getElementById('wallet-link-container');
+    if (container) {
+      container.innerHTML = '<a href="shoebox://">Wallet app</a>';
+    }
+  }
+}
+
 // Initialize on load
-document.addEventListener('DOMContentLoaded', loadConfig);
+document.addEventListener('DOMContentLoaded', () => {
+  loadConfig();
+  setupWalletLink();
+});

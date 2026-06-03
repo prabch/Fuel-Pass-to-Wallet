@@ -143,7 +143,7 @@ header("Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval
     <section class="info-card">
       <h2>What is an Apple Wallet Pass?</h2>
       <p>
-        An Apple Wallet Pass is a digital card stored natively in the Wallet app. 
+        An Apple Wallet Pass is a digital card stored natively in the <span id="wallet-link-container">Wallet app</span>. 
         It provides quick, offline access to your QR code on your iPhone or Apple Watch. 
         <a href="https://support.apple.com/en-lk/guide/iphone/iphe7aa3336/ios" target="_blank" rel="noopener noreferrer">Learn more</a>.
       </p>
