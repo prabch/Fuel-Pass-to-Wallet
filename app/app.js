@@ -282,8 +282,41 @@ document.getElementById('pass-form').addEventListener('submit', (e) => {
     return;
   }
   
-  const vehicleNumber = document.getElementById('vehicleNumber').value || '';
-  const permitCode = document.getElementById('permitCode').value || '';
+  // Rate limiting check: 3 passes per minute
+  let submitTimes = [];
+  try {
+    const stored = localStorage.getItem('fp_last_submits');
+    if (stored) submitTimes = JSON.parse(stored);
+  } catch (e) {}
+  
+  const now = Date.now();
+  // Filter out timestamps older than 60 seconds
+  submitTimes = submitTimes.filter(time => now - time < 60000);
+  
+  if (submitTimes.length >= 3) {
+    const oldestTime = submitTimes[0];
+    const remaining = Math.ceil((60000 - (now - oldestTime)) / 1000);
+    setStatus(`Please wait ${remaining} seconds before generating more passes.`, 'error');
+    return;
+  }
+
+  const vehicleNumber = document.getElementById('vehicleNumber').value.trim();
+  const permitCode = document.getElementById('permitCode').value.trim();
+
+  // Basic JS validation
+  if (!/^[a-zA-Z0-9]{2,3}\s*-\s*[0-9]{4}$/.test(vehicleNumber)) {
+    setStatus('Invalid Vehicle Number format. Example: CAA-1234 or 252-1234.', 'error');
+    return;
+  }
+
+  if (!/^[a-zA-Z0-9]{12}$/.test(permitCode)) {
+    setStatus('Invalid Code. It must be exactly 12 alphanumeric characters.', 'error');
+    return;
+  }
+
+  // Record the rate limit timestamp
+  submitTimes.push(now);
+  localStorage.setItem('fp_last_submits', JSON.stringify(submitTimes));
   const vehicleTypeLabel = document.getElementById('vehicleTypeLabel').value || 'Motor Car';
   const quotaLabel = document.getElementById('quotaLabel').value || '20L';
   const qrValue = document.getElementById('qrValue').value || `${vehicleNumber} | ${permitCode}`;

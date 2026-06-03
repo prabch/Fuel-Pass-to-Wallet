@@ -104,12 +104,12 @@ header("Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval
         <form id="pass-form">
           <div class="form-group">
             <label for="vehicleNumber">Vehicle Number</label>
-            <input type="text" id="vehicleNumber" class="form-control" placeholder="e.g. CAA-1234" required>
+            <input type="text" id="vehicleNumber" class="form-control" placeholder="e.g. CAA-1234" pattern="^[a-zA-Z0-9]{2,3}\s*-\s*[0-9]{4}$" title="Vehicle number should be in format like CAA-1234 or 252-1234" required>
           </div>
           
           <div class="form-group">
             <label for="permitCode">Code (From QR)</label>
-            <input type="text" id="permitCode" class="form-control" placeholder="e.g. FJ2HTUJUJA61" required>
+            <input type="text" id="permitCode" class="form-control" placeholder="e.g. FJ2HTUJUJA61" pattern="^[a-zA-Z0-9]{12}$" title="Permit code must be exactly 12 alphanumeric characters" minlength="12" maxlength="12" required>
           </div>
 
           <div class="form-group">
@@ -125,7 +125,7 @@ header("Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval
           </div>
 
           <div style="position: absolute; left: -5000px;" aria-hidden="true">
-            <label for="website_url">Leave this empty</label>
+            <label for="website_url">Website URL</label>
             <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
           </div>
 
