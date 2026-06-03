@@ -3,14 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Add your Sri Lanka Fuel Pass QR to Apple Wallet effortlessly.">
+  <meta name="description" content="Convert your Sri Lanka Fuel QR into a digital Apple Wallet Pass">
+  <meta name="keywords" content="Sri Lanka Fuel Pass, Apple Wallet, QR Code, Fuel Pass Sri Lanka, Digital Wallet Pass, pkpass">
+  <meta name="robots" content="index, follow">
   <title>Fuel Pass to Wallet</title>
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Fuel Pass to Wallet">
+  <meta property="og:description" content="Convert your Sri Lanka Fuel QR into a digital Apple Wallet Pass">
+  <meta property="og:image" content="/logo.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fuel Pass to Wallet">
+  <meta name="twitter:description" content="Convert your Sri Lanka Fuel QR into a digital Apple Wallet Pass">
+  <meta name="twitter:image" content="/logo.png">
+
+  <!-- Favicons and Web App Manifest -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="theme-color" content="#ffffff">
   
   <!-- Preconnect to Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="favicon.png">
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="style.css?v=<?= filemtime('style.css') ?>">
