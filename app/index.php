@@ -164,5 +164,6 @@ header("Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
   <script src="app.js?v=<?= filemtime('app.js') ?>"></script>
+  <a href="https://prabch.com" class="back-home-link">← prabch.com</a>
 </body>
 </html>
