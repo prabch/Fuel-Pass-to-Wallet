@@ -1,3 +1,8 @@
+<?php
+header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+header("Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net data: blob: https://fonts.googleapis.com https://fonts.gstatic.com;");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,6 +122,11 @@
           <div class="form-group">
             <label for="quotaLabel">Weekly Quota</label>
             <input type="text" id="quotaLabel" class="form-control" placeholder="e.g. 25L">
+          </div>
+
+          <div style="position: absolute; left: -5000px;" aria-hidden="true">
+            <label for="website_url">Leave this empty</label>
+            <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
           </div>
 
           <!-- Hidden field to hold the raw QR string -->

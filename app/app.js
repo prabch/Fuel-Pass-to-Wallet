@@ -275,8 +275,15 @@ function tick() {
 document.getElementById('pass-form').addEventListener('submit', (e) => {
   e.preventDefault();
   
-  const vehicleNumber = document.getElementById('vehicleNumber').value || 'CAD-6651';
-  const permitCode = document.getElementById('permitCode').value || 'UNKNOWN';
+  // Honeypot check to block bots
+  const honeypot = document.getElementById('website_url').value;
+  if (honeypot) {
+    console.warn('Bot activity detected.');
+    return;
+  }
+  
+  const vehicleNumber = document.getElementById('vehicleNumber').value || '';
+  const permitCode = document.getElementById('permitCode').value || '';
   const vehicleTypeLabel = document.getElementById('vehicleTypeLabel').value || 'Motor Car';
   const quotaLabel = document.getElementById('quotaLabel').value || '20L';
   const qrValue = document.getElementById('qrValue').value || `${vehicleNumber} | ${permitCode}`;
@@ -286,7 +293,8 @@ document.getElementById('pass-form').addEventListener('submit', (e) => {
     permitCode,
     vehicleTypeLabel,
     quotaLabel,
-    qrValue
+    qrValue,
+    website_url: honeypot
   });
 
   const btn = document.getElementById('btn-generate');

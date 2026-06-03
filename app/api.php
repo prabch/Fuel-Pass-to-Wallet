@@ -53,17 +53,31 @@ if (isset($_GET['action']) && $_GET['action'] === 'config') {
 // 3. PASS DATA PREPARATION
 // =========================================================================
 
-$vehicleNumber = $_GET['vehicleNumber'] ?? '';
-$permitCode = $_GET['permitCode'] ?? '';
+// Honeypot check
+if (!empty($_GET['website_url'])) {
+    http_response_code(403);
+    die("Forbidden");
+}
+
+// Input validation & length limits
+$rawVehicleNumber = substr(trim($_GET['vehicleNumber'] ?? ''), 0, 20);
+$rawPermitCode = substr(trim($_GET['permitCode'] ?? ''), 0, 50);
 
 // Auto-detect type
-$cleanPlate = trim(preg_replace('/^(?:WP|CP|SP|EP|NW|NC|UP|VA|RU)\s+/i', '', $vehicleNumber));
+$cleanPlate = trim(preg_replace('/^(?:WP|CP|SP|EP|NW|NC|UP|VA|RU)\s+/i', '', $rawVehicleNumber));
 $firstLetter = strtoupper(substr($cleanPlate, 0, 1));
 $detectedType = $startingLetterMapping[$firstLetter] ?? 'Motor Car';
 
-$vehicleTypeLabel = $_GET['vehicleTypeLabel'] ?? $detectedType;
-$quotaLabel = $_GET['quotaLabel'] ?? $vehicleAllowances[$vehicleTypeLabel] ?? '20L';
-$qrValue = $_GET['qrValue'] ?? "$vehicleNumber | $permitCode";
+$rawVehicleTypeLabel = substr(trim($_GET['vehicleTypeLabel'] ?? $detectedType), 0, 30);
+$rawQuotaLabel = substr(trim($_GET['quotaLabel'] ?? ($vehicleAllowances[$rawVehicleTypeLabel] ?? '20L')), 0, 10);
+$rawQrValue = substr(trim($_GET['qrValue'] ?? "$rawVehicleNumber | $rawPermitCode"), 0, 200);
+
+// Sanitize inputs for JSON to prevent injection
+$vehicleNumber = htmlspecialchars($rawVehicleNumber, ENT_QUOTES, 'UTF-8');
+$permitCode = htmlspecialchars($rawPermitCode, ENT_QUOTES, 'UTF-8');
+$vehicleTypeLabel = htmlspecialchars($rawVehicleTypeLabel, ENT_QUOTES, 'UTF-8');
+$quotaLabel = htmlspecialchars($rawQuotaLabel, ENT_QUOTES, 'UTF-8');
+$qrValue = htmlspecialchars($rawQrValue, ENT_QUOTES, 'UTF-8');
 
 // Paths
 $certsDir = __DIR__ . '/../certificates';
@@ -214,7 +228,9 @@ if (openssl_pkcs7_sign($manifestPath, $tempSigFile, $signerCert, [$signerKey, ''
         }
     }
 } else {
-    die("OpenSSL Signature Failed on Server: " . openssl_error_string());
+    error_log("OpenSSL Signature Failed: " . openssl_error_string());
+    http_response_code(500);
+    die("Internal Server Error: Unable to generate pass at this time.");
 }
 
 // Zip
@@ -231,7 +247,8 @@ if ($zip->open($zipPath, ZipArchive::CREATE) === TRUE) {
 header('Pragma: no-cache');
 header('Content-type: application/vnd.apple.pkpass');
 header('Content-length: ' . filesize($zipPath));
-header('Content-Disposition: attachment; filename="fuelpass-' . preg_replace('/\s+/', '-', $vehicleNumber) . '.pkpass"');
+$safeFilename = preg_replace('/[^a-zA-Z0-9-]/', '', str_replace(' ', '-', $vehicleNumber));
+header('Content-Disposition: attachment; filename="fuelpass-' . $safeFilename . '.pkpass"');
 readfile($zipPath);
 
 // Cleanup
