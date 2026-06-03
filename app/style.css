@@ -289,6 +289,45 @@ p.subtitle {
 }
 
 /* ==========================================================================
+   Components: Info Card
+   ========================================================================== */
+.info-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-card h2 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.info-card p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.info-card a {
+  color: var(--accent-color);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.info-card a:hover {
+  color: var(--accent-hover);
+}
+
+/* ==========================================================================
    Components: Footer
    ========================================================================== */
 .footer {

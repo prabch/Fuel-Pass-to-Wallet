@@ -129,6 +129,16 @@
       </div>
     </section>
 
+    <!-- Info Card -->
+    <section class="info-card">
+      <h2>What is an Apple Wallet Pass?</h2>
+      <p>
+        An Apple Wallet Pass is a digital card stored natively in the Wallet app. 
+        It provides quick, offline access to your QR code on your iPhone or Apple Watch. 
+        <a href="https://support.apple.com/en-lk/guide/iphone/iphe7aa3336/ios" target="_blank" rel="noopener noreferrer">Learn more</a>.
+      </p>
+    </section>
+
     <!-- Minimal Footer -->
     <footer class="footer">
       <p class="footer-privacy">Pass generation is processed dynamically on-the-fly. Your vehicle number, permit code, or QR details are never uploaded or stored on any server</p>
