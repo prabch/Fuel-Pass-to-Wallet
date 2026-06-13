@@ -12,19 +12,22 @@ define('CARD_NAME', 'National Fuel Pass');
 // =========================================================================
 
 $vehicleAllowances = [
-    'Motor Car'             => '25L',
-    'Motorcycle'            => '4L',
-    'Three Wheeler'         => '8L',
-    'Dual Purpose Vehicle'  => '20L',
-    'Bus'                   => '40L',
-    'Lorry'                 => '50L',
-    'Other'                 => '20L'
+    'Motor Car'                 => '25L',
+    'Motorcycle'                => '8L',
+    'Three Wheeler'             => '20L',
+    'Van'                       => '50L',
+    'Special Purpose Vehicle'   => '40L',
+    'Bus'                       => '100L',
+    'Lorry'                     => '200L',
+    'Quad Cycles'               => '8L',
+    'Other'                     => '25L'
 ];
 
 $startingLetterMapping = [
     'A' => 'Three Wheeler', 'Q' => 'Three Wheeler',
     'B' => 'Motorcycle',    'M' => 'Motorcycle', 'U' => 'Motorcycle',
     'C' => 'Motor Car',     'K' => 'Motor Car',  'W' => 'Motor Car',
+    'L' => 'Lorry',         'N' => 'Bus'
 ];
 
 $evenDigits = [0, 2, 4, 6, 8];
