@@ -304,8 +304,8 @@ document.getElementById('pass-form').addEventListener('submit', (e) => {
   const permitCode = document.getElementById('permitCode').value.trim();
 
   // Basic JS validation
-  if (!/^[a-zA-Z0-9]{2,3}\s*-\s*[0-9]{4}$/.test(vehicleNumber)) {
-    setStatus('Invalid Vehicle Number format. Example: CAA-1234 or 252-1234.', 'error');
+  if (!/^[a-zA-Z0-9]{1,3}\s*-\s*[0-9]{4}$/.test(vehicleNumber)) {
+    setStatus('Invalid Vehicle Number format. Example: CAA-1234, 252-1234 or 3-1234.', 'error');
     return;
   }
 
