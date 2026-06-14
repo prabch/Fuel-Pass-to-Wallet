@@ -104,7 +104,7 @@ header("Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval
         <form id="pass-form">
           <div class="form-group">
             <label for="vehicleNumber">Vehicle Number</label>
-            <input type="text" id="vehicleNumber" class="form-control" placeholder="e.g. CAA-1234" pattern="^[a-zA-Z0-9]{2,3}\s*-\s*[0-9]{4}$" title="Vehicle number should be in format like CAA-1234 or 252-1234" required>
+            <input type="text" id="vehicleNumber" class="form-control" placeholder="e.g. CAA-1234" pattern="^[a-zA-Z0-9]{1,3}\s*-\s*[0-9]{4}$" title="Vehicle number should be in format like CAA-1234 or 252-1234" required>
           </div>
           
           <div class="form-group">

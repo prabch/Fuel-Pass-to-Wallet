@@ -158,7 +158,7 @@ async function performOCR(imageUrl) {
 
   // Try parsing vehicle number if empty
   if (!document.getElementById('vehicleNumber').value) {
-    const vNumMatch = text.match(/([A-Z0-9]{2,3}\s*-\s*\d{4})/i);
+    const vNumMatch = text.match(/([A-Z0-9]{1,3}\s*-\s*\d{4})/i);
     if (vNumMatch) {
       document.getElementById('vehicleNumber').value = vNumMatch[1].replace(/\s+/g, '');
     }
